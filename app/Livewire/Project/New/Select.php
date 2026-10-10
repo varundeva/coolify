@@ -244,6 +244,12 @@ class Select extends Component
                 'logoDark' => asset('svgs/resources/dragonfly-dark.svg'),
             ],
             [
+                'id' => 'valkey',
+                'name' => 'Valkey',
+                'description' => 'An open-source, BSD-licensed high-performance key/value datastore, fork of Redis.',
+                'logo' => asset('svgs/resources/valkey.svg'),
+            ],
+            [
                 'id' => 'mongodb',
                 'name' => 'MongoDB',
                 'description' => 'A document-oriented NoSQL database that stores JSON-like documents.',
@@ -374,6 +380,7 @@ class Select extends Component
             case 'redis':
             case 'keydb':
             case 'dragonfly':
+            case 'valkey':
             case 'clickhouse':
             case 'mongodb':
             case 'sqlite':

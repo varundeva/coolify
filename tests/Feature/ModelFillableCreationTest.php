@@ -27,6 +27,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\Subscription;
 use App\Models\SwarmDocker;
 use App\Models\Tag;
@@ -835,6 +836,47 @@ it('creates StandaloneDragonfly with all fillable attributes', function () {
     expect($db->exists)->toBeTrue();
     expect($db->uuid)->toBe('custom-dragonfly-uuid');
     expect($db->dragonfly_password)->toBe('dragonflypass123');
+    expect($db->environment_id)->toBe($this->environment->id);
+});
+
+it('creates StandaloneValkey with all fillable attributes', function () {
+    $db = StandaloneValkey::create([
+        'uuid' => 'custom-valkey-uuid',
+        'name' => 'Full Fillable Valkey',
+        'description' => 'Valkey with all attrs',
+        'valkey_password' => 'valkeypass123',
+        'valkey_conf' => 'save ""',
+        'is_log_drain_enabled' => false,
+        'is_include_timestamps' => false,
+        'status' => 'running',
+        'image' => 'valkey/valkey:9.0-alpine',
+        'is_public' => false,
+        'public_port' => 26382,
+        'ports_mappings' => '26382:6379',
+        'limits_memory' => '1g',
+        'limits_memory_swap' => '2g',
+        'limits_memory_swappiness' => 30,
+        'limits_memory_reservation' => '512m',
+        'limits_cpus' => '2',
+        'limits_cpuset' => '0-1',
+        'limits_cpu_shares' => 512,
+        'started_at' => now()->subDay()->toISOString(),
+        'restart_count' => 0,
+        'last_restart_at' => null,
+        'last_restart_type' => null,
+        'last_online_at' => now()->toISOString(),
+        'public_port_timeout' => 3600,
+        'enable_ssl' => false,
+        'custom_docker_run_options' => '',
+        'destination_type' => $this->destination->getMorphClass(),
+        'destination_id' => $this->destination->id,
+        'environment_id' => $this->environment->id,
+    ]);
+
+    expect($db->exists)->toBeTrue();
+    expect($db->uuid)->toBe('custom-valkey-uuid');
+    expect($db->valkey_password)->toBe('valkeypass123');
+    expect($db->valkey_conf)->toBe('save ""');
     expect($db->environment_id)->toBe($this->environment->id);
 });
 

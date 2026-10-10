@@ -12,6 +12,7 @@ use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Rules\SafeWebhookUrl;
 use App\Support\DatabaseImport\DatabaseImportCommandBuilder;
 use App\Support\DatabaseImport\DatabaseImportException;
@@ -403,6 +404,7 @@ class ImportForm extends Component
             $resource->getMorphClass() === StandaloneRedis::class ||
             $resource->getMorphClass() === StandaloneKeydb::class ||
             $resource->getMorphClass() === StandaloneDragonfly::class ||
+            $resource->getMorphClass() === StandaloneValkey::class ||
             $resource->getMorphClass() === StandaloneClickhouse::class
         ) {
             $this->unsupported = true;
@@ -412,7 +414,7 @@ class ImportForm extends Component
         if ($resource->getMorphClass() === ServiceDatabase::class) {
             $dbType = $resource->databaseType();
             if (str_contains($dbType, 'redis') || str_contains($dbType, 'keydb') ||
-                str_contains($dbType, 'dragonfly') || str_contains($dbType, 'clickhouse')) {
+                str_contains($dbType, 'dragonfly') || str_contains($dbType, 'valkey') || str_contains($dbType, 'clickhouse')) {
                 $this->unsupported = true;
             }
         }

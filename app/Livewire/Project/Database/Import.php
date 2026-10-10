@@ -7,6 +7,7 @@ use App\Models\StandaloneClickhouse;
 use App\Models\StandaloneDragonfly;
 use App\Models\StandaloneKeydb;
 use App\Models\StandaloneRedis;
+use App\Models\StandaloneValkey;
 use App\Traits\ListensToTeamChannel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -131,6 +132,7 @@ class Import extends Component
             $resource instanceof StandaloneRedis ||
             $resource instanceof StandaloneKeydb ||
             $resource instanceof StandaloneDragonfly ||
+            $resource instanceof StandaloneValkey ||
             $resource instanceof StandaloneClickhouse
         ) {
             return true;
@@ -142,6 +144,7 @@ class Import extends Component
             return str_contains($dbType, 'redis') ||
                 str_contains($dbType, 'keydb') ||
                 str_contains($dbType, 'dragonfly') ||
+                str_contains($dbType, 'valkey') ||
                 str_contains($dbType, 'clickhouse');
         }
 

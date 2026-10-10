@@ -10,6 +10,7 @@ use App\Actions\Database\StartMongodb;
 use App\Actions\Database\StartMysql;
 use App\Actions\Database\StartPostgresql;
 use App\Actions\Database\StartRedis;
+use App\Actions\Database\StartValkey;
 use App\Actions\Database\StopDatabase;
 use App\Enums\ActivityTypes;
 use App\Enums\ProcessStatus;
@@ -29,6 +30,7 @@ use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
+use App\Models\StandaloneValkey;
 use App\Models\Team;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Bus;
@@ -111,6 +113,7 @@ dataset('ssl database start actions', [
     'redis' => [StartRedis::class, StandaloneRedis::class],
     'keydb' => [StartKeydb::class, StandaloneKeydb::class],
     'dragonfly' => [StartDragonfly::class, StandaloneDragonfly::class],
+    'valkey' => [StartValkey::class, StandaloneValkey::class],
 ]);
 
 it('throws instead of silently returning when an SSL database has no CA certificate', function (string $action, string $model) {

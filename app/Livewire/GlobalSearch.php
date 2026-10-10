@@ -19,6 +19,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
@@ -204,6 +205,7 @@ class GlobalSearch extends Component
             'new redis' => 'redis',
             'new keydb' => 'keydb',
             'new dragonfly' => 'dragonfly',
+            'new valkey' => 'valkey',
             'new sqlite' => 'sqlite',
             'new mongodb' => 'mongodb',
             'new mongo' => 'mongodb',
@@ -243,7 +245,7 @@ class GlobalSearch extends Component
             'dockerfile', 'docker-compose-empty', 'docker-image',
             // Databases
             'postgresql', 'mysql', 'mariadb', 'redis', 'keydb',
-            'dragonfly', 'mongodb', 'clickhouse', 'sqlite',
+            'dragonfly', 'valkey', 'mongodb', 'clickhouse', 'sqlite',
         ]) || str_starts_with($type, 'one-click-service-')) {
             return $user->can('createAnyResource');
         }
@@ -494,6 +496,27 @@ class GlobalSearch extends Component
                             'project' => $db->environment->project->name ?? null,
                             'environment' => $db->environment->name ?? null,
                             'search_text' => strtolower($db->name.' '.$db->uuid.' dragonfly '.$db->description.' database databases db'),
+                        ];
+                    })
+            );
+
+            // Valkey
+            $databases = $databases->merge(
+                StandaloneValkey::ownedByCurrentTeam()
+                    ->with(['environment.project'])
+                    ->get()
+                    ->map(function ($db) {
+                        return [
+                            'id' => $db->id,
+                            'name' => $db->name,
+                            'type' => 'database',
+                            'subtype' => 'valkey',
+                            'uuid' => $db->uuid,
+                            'description' => $db->description,
+                            'link' => $db->link(),
+                            'project' => $db->environment->project->name ?? null,
+                            'environment' => $db->environment->name ?? null,
+                            'search_text' => strtolower($db->name.' '.$db->uuid.' valkey '.$db->description.' database databases db'),
                         ];
                     })
             );
@@ -1295,6 +1318,16 @@ class GlobalSearch extends Component
                 'type' => 'dragonfly',
                 'category' => 'Databases',
                 'logo' => 'svgs/dragonfly.svg',
+                'resourceType' => 'database',
+            ]);
+
+            $items->push([
+                'name' => 'Valkey',
+                'description' => 'High-performance key/value datastore',
+                'quickcommand' => '(type: new valkey)',
+                'type' => 'valkey',
+                'category' => 'Databases',
+                'logo' => 'svgs/valkey.svg',
                 'resourceType' => 'database',
             ]);
 

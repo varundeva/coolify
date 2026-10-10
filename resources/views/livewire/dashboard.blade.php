@@ -58,6 +58,7 @@
                                 $project->redis_count,
                                 $project->keydbs_count,
                                 $project->dragonflies_count,
+                                $project->valkeys_count,
                                 $project->clickhouses_count,
                                 $project->mongodbs_count,
                                 $project->mysqls_count,

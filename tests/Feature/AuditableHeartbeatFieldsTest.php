@@ -15,6 +15,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -55,6 +56,7 @@ function createAuditedResourceForHeartbeatTest(string $model, Environment $envir
         StandaloneRedis::class => [],
         StandaloneKeydb::class => ['keydb_password' => 'review-fix-e-password'],
         StandaloneDragonfly::class => ['dragonfly_password' => 'review-fix-e-password'],
+        StandaloneValkey::class => ['valkey_password' => 'review-fix-e-password'],
         StandaloneClickhouse::class => ['clickhouse_admin_password' => 'review-fix-e-password'],
         StandaloneSqlite::class => [],
     ];
@@ -95,6 +97,7 @@ test('container heartbeat and restart tracking writes are not audited as user ch
     StandaloneRedis::class,
     StandaloneKeydb::class,
     StandaloneDragonfly::class,
+    StandaloneValkey::class,
     StandaloneClickhouse::class,
     StandaloneSqlite::class,
 ]);

@@ -18,6 +18,7 @@ enum NewResourceTypes: string
     case MARIADB = 'mariadb';
     case KEYDB = 'keydb';
     case DRAGONFLY = 'dragonfly';
+    case VALKEY = 'valkey';
     case CLICKHOUSE = 'clickhouse';
     case SQLITE = 'sqlite';
 }

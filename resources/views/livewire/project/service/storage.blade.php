@@ -18,7 +18,8 @@
             $resource->getMorphClass() == 'App\Models\StandaloneClickhouse' ||
             $resource->getMorphClass() == 'App\Models\StandaloneMongodb' ||
             $resource->getMorphClass() == 'App\Models\StandaloneMysql' ||
-            $resource->getMorphClass() == 'App\Models\StandaloneSqlite')
+            $resource->getMorphClass() == 'App\Models\StandaloneSqlite' ||
+            $resource->getMorphClass() == 'App\Models\StandaloneValkey')
         <x-application.settings-section id="storage-mounts-section" title="Persistent storage" :flush="true"
             :helper="$resource instanceof \App\Models\Application && $resource->git_based()
                 ? 'Preview deployment volumes can use a -pr-#PRNumber suffix so each pull request receives isolated storage.'

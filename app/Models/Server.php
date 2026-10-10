@@ -1432,6 +1432,7 @@ $siteAddress {
         $mariadbs = StandaloneMariadb::where($destinationCondition)->get();
         $keydbs = StandaloneKeydb::where($destinationCondition)->get();
         $dragonflies = StandaloneDragonfly::where($destinationCondition)->get();
+        $valkeys = StandaloneValkey::where($destinationCondition)->get();
         $clickhouses = StandaloneClickhouse::where($destinationCondition)->get();
         $sqlites = StandaloneSqlite::where($destinationCondition)->get();
 
@@ -1442,6 +1443,7 @@ $siteAddress {
             ->concat($mariadbs)
             ->concat($keydbs)
             ->concat($dragonflies)
+            ->concat($valkeys)
             ->concat($clickhouses)
             ->concat($sqlites)
             ->filter(fn ($item) => data_get($item, 'name') !== 'coolify-db');

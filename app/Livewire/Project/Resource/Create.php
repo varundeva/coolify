@@ -65,6 +65,8 @@ class Create extends Component
                     $database = create_standalone_keydb($environment->id, $destination);
                 } elseif ($type->value() === 'dragonfly') {
                     $database = create_standalone_dragonfly($environment->id, $destination);
+                } elseif ($type->value() === 'valkey') {
+                    $database = create_standalone_valkey($environment->id, $destination);
                 } elseif ($type->value() === 'clickhouse') {
                     $database = create_standalone_clickhouse($environment->id, $destination);
                 } elseif ($type->value() === 'sqlite') {

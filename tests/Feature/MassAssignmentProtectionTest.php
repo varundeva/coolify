@@ -12,6 +12,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\Team;
 use App\Models\User;
 
@@ -31,6 +32,7 @@ describe('mass assignment protection', function () {
             StandaloneMongodb::class,
             StandaloneKeydb::class,
             StandaloneDragonfly::class,
+            StandaloneValkey::class,
             StandaloneClickhouse::class,
             StandaloneSqlite::class,
         ];
@@ -140,6 +142,7 @@ describe('mass assignment protection', function () {
             StandaloneMongodb::class,
             StandaloneKeydb::class,
             StandaloneDragonfly::class,
+            StandaloneValkey::class,
             StandaloneClickhouse::class,
             StandaloneSqlite::class,
         ];
@@ -182,6 +185,7 @@ describe('mass assignment protection', function () {
             StandaloneMongodb::class,
             StandaloneKeydb::class,
             StandaloneDragonfly::class,
+            StandaloneValkey::class,
             StandaloneClickhouse::class,
         ];
 
@@ -201,6 +205,7 @@ describe('mass assignment protection', function () {
             StandaloneRedis::class,
             StandaloneKeydb::class,
             StandaloneDragonfly::class,
+            StandaloneValkey::class,
         ];
 
         foreach ($sslModels as $modelClass) {

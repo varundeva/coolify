@@ -28,6 +28,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\SwarmDocker;
 use App\Notifications\Application\RestartLimitReached as ApplicationRestartLimitReached;
 use App\Notifications\Container\ContainerRestarted;
@@ -546,6 +547,7 @@ class PushServerUpdateJob implements ShouldBeEncrypted, ShouldQueue, Silenced
             StandaloneDragonfly::class,
             StandaloneClickhouse::class,
             StandaloneSqlite::class,
+            StandaloneValkey::class,
         ])->flatMap(function (string $databaseClass) use ($databaseColumns, $standaloneDockerIds, $swarmDockerIds) {
             return $databaseClass::query()
                 ->select($databaseColumns)

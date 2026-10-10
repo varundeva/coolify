@@ -9,9 +9,10 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 
 const REDACTED = '<REDACTED>';
-const DATABASE_TYPES = ['postgresql', 'redis', 'mongodb', 'mysql', 'mariadb', 'keydb', 'dragonfly', 'clickhouse', 'sqlite'];
+const DATABASE_TYPES = ['postgresql', 'redis', 'mongodb', 'mysql', 'mariadb', 'keydb', 'dragonfly', 'valkey', 'clickhouse', 'sqlite'];
 const STANDALONE_DATABASE_MODELS = [
     'postgresql' => StandalonePostgresql::class,
     'redis' => StandaloneRedis::class,
@@ -20,6 +21,7 @@ const STANDALONE_DATABASE_MODELS = [
     'mariadb' => StandaloneMariadb::class,
     'keydb' => StandaloneKeydb::class,
     'dragonfly' => StandaloneDragonfly::class,
+    'valkey' => StandaloneValkey::class,
     'clickhouse' => StandaloneClickhouse::class,
     'sqlite' => StandaloneSqlite::class,
 ];

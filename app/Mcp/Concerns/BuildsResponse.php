@@ -39,7 +39,7 @@ trait BuildsResponse
 
         // database passwords
         'postgres_password', 'dragonfly_password', 'keydb_password',
-        'redis_password', 'mongo_initdb_root_password',
+        'redis_password', 'valkey_password', 'mongo_initdb_root_password',
         'mariadb_password', 'mariadb_root_password',
         'mysql_password', 'mysql_root_password',
         'clickhouse_admin_password',
@@ -57,7 +57,7 @@ trait BuildsResponse
 
         // raw database configuration blobs
         'postgres_conf', 'mysql_conf', 'mariadb_conf', 'mongo_conf',
-        'redis_conf', 'keydb_conf',
+        'redis_conf', 'keydb_conf', 'valkey_conf',
 
         // database connection strings embed credentials
         'internal_db_url', 'external_db_url', 'init_scripts',

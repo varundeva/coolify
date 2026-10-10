@@ -15,6 +15,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -63,11 +64,12 @@ class Resources extends Component
             $this->destination->dragonflies,
             $this->destination->clickhouses,
             $this->destination->sqlites,
+            $this->destination->valkeys,
         ]);
     }
 
     /**
-     * @param  array<int, iterable<Application|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite>>  $groups
+     * @param  array<int, iterable<Application|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite|StandaloneValkey>>  $groups
      * @return array<int, array{uuid:string,type:string,name:string,project:string|null,environment:string|null,url:string|null,search:string}>
      */
     protected function collectResources(array $groups): array
@@ -83,7 +85,7 @@ class Resources extends Component
     }
 
     /**
-     * @param  Application|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite  $resource
+     * @param  Application|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite|StandaloneValkey  $resource
      * @return array{uuid:string,type:string,name:string,project:string|null,environment:string|null,url:string|null,search:string}
      */
     protected function resourceRow(BaseModel $resource): array

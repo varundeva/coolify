@@ -73,6 +73,7 @@ class Danger extends Component
             'standalone-mariadb',
             'standalone-keydb',
             'standalone-dragonfly',
+            'standalone-valkey',
             'standalone-clickhouse',
             'standalone-sqlite' => $this->resource->name ?? 'Database',
             'service' => $this->resource->name ?? 'Service',

@@ -22,6 +22,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Notifications\Internal\GeneralNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
@@ -38,7 +39,7 @@ class DeleteResourceJob implements ShouldBeEncrypted, ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public function __construct(
-        public Application|ApplicationPreview|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite $resource,
+        public Application|ApplicationPreview|Service|StandalonePostgresql|StandaloneRedis|StandaloneMongodb|StandaloneMysql|StandaloneMariadb|StandaloneKeydb|StandaloneDragonfly|StandaloneClickhouse|StandaloneSqlite|StandaloneValkey $resource,
         public bool $deleteVolumes = true,
         public bool $deleteConnectedNetworks = true,
         public bool $deleteConfigurations = true,
@@ -169,7 +170,8 @@ class DeleteResourceJob implements ShouldBeEncrypted, ShouldQueue
             || $this->resource instanceof StandaloneKeydb
             || $this->resource instanceof StandaloneDragonfly
             || $this->resource instanceof StandaloneClickhouse
-            || $this->resource instanceof StandaloneSqlite;
+            || $this->resource instanceof StandaloneSqlite
+            || $this->resource instanceof StandaloneValkey;
     }
 
     private function deleteScheduledVolumeBackups(): void

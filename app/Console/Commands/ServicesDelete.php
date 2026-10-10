@@ -15,6 +15,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use Illuminate\Console\Command;
 
 use function Laravel\Prompts\confirm;
@@ -176,6 +177,13 @@ class ServicesDelete extends Command
             $key = "sqlite_{$db->id}";
             $allDatabases->put($key, $db);
             $databaseOptions->put($key, "{$db->name} (SQLite)");
+        }
+
+        // Add Valkey databases
+        foreach (StandaloneValkey::all() as $db) {
+            $key = "valkey_{$db->id}";
+            $allDatabases->put($key, $db);
+            $databaseOptions->put($key, "{$db->name} (Valkey)");
         }
 
         if ($allDatabases->count() === 0) {

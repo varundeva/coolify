@@ -22,6 +22,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\SwarmDocker;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\ValidationException;
@@ -123,7 +124,8 @@ class ResourceOperations extends Component
                 $this->resource->getMorphClass() === StandaloneKeydb::class ||
                 $this->resource->getMorphClass() === StandaloneDragonfly::class ||
                 $this->resource->getMorphClass() === StandaloneClickhouse::class ||
-                $this->resource->getMorphClass() === StandaloneSqlite::class
+                $this->resource->getMorphClass() === StandaloneSqlite::class ||
+                $this->resource->getMorphClass() === StandaloneValkey::class
             ) {
                 $uuid = new_public_id();
                 $new_resource = $this->resource->replicate([
@@ -168,6 +170,8 @@ class ResourceOperations extends Component
                         $newName = 'keydb-data-'.$new_resource->uuid;
                     } elseif (str_starts_with($originalName, 'dragonfly-data-')) {
                         $newName = 'dragonfly-data-'.$new_resource->uuid;
+                    } elseif (str_starts_with($originalName, 'valkey-data-')) {
+                        $newName = 'valkey-data-'.$new_resource->uuid;
                     } elseif (str_starts_with($originalName, 'sqlite-data-')) {
                         $newName = 'sqlite-data-'.$new_resource->uuid;
                     } else {

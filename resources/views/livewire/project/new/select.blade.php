@@ -411,6 +411,10 @@
                                 docs: 'https://www.dragonflydb.io/docs',
                                 website: 'https://www.dragonflydb.io/'
                             },
+                            valkey: {
+                                docs: 'https://valkey.io/docs/',
+                                website: 'https://valkey.io/'
+                            },
                             mongodb: {
                                 docs: 'https://www.mongodb.com/docs/',
                                 website: 'https://www.mongodb.com/'

@@ -18,6 +18,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -40,6 +41,7 @@ class CanUpdateResource
             StandaloneClickhouse::class,
             StandaloneMongodb::class,
             StandaloneSqlite::class,
+            StandaloneValkey::class,
         ],
         'stack_service_uuid' => [ServiceApplication::class, ServiceDatabase::class],
         'service_uuid' => [Service::class],

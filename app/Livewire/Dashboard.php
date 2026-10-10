@@ -30,6 +30,7 @@ class Dashboard extends Component
                 'redis',
                 'keydbs',
                 'dragonflies',
+                'valkeys',
                 'clickhouses',
                 'mongodbs',
                 'mysqls',

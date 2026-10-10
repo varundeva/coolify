@@ -112,6 +112,11 @@ class StandaloneDocker extends BaseModel
         return $this->morphMany(StandaloneDragonfly::class, 'destination');
     }
 
+    public function valkeys()
+    {
+        return $this->morphMany(StandaloneValkey::class, 'destination');
+    }
+
     public function clickhouses()
     {
         return $this->morphMany(StandaloneClickhouse::class, 'destination');
@@ -173,10 +178,11 @@ class StandaloneDocker extends BaseModel
         $mariadbs = $this->mariadbs;
         $keydbs = $this->keydbs;
         $dragonflies = $this->dragonflies;
+        $valkeys = $this->valkeys;
         $clickhouses = $this->clickhouses;
         $sqlites = $this->sqlites;
 
-        return $postgresqls->concat($redis)->concat($mongodbs)->concat($mysqls)->concat($mariadbs)->concat($keydbs)->concat($dragonflies)->concat($clickhouses)->concat($sqlites);
+        return $postgresqls->concat($redis)->concat($mongodbs)->concat($mysqls)->concat($mariadbs)->concat($keydbs)->concat($dragonflies)->concat($valkeys)->concat($clickhouses)->concat($sqlites);
     }
 
     public function attachedTo()

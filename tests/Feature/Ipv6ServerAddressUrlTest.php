@@ -13,6 +13,7 @@ use App\Models\StandaloneMongodb;
 use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
+use App\Models\StandaloneValkey;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 
@@ -85,6 +86,7 @@ describe('public database urls', function () {
         'redis' => [StandaloneRedis::class, ['image' => 'redis:5.0'], 'redis://@%s:15432/0'],
         'keydb' => [StandaloneKeydb::class, ['keydb_password' => 'pass'], 'redis://:pass@%s:15432/0'],
         'dragonfly' => [StandaloneDragonfly::class, ['dragonfly_password' => 'pass'], 'redis://:pass@%s:15432/0'],
+        'valkey' => [StandaloneValkey::class, ['valkey_password' => 'pass'], 'redis://:pass@%s:15432/0'],
         'clickhouse' => [StandaloneClickhouse::class, ['clickhouse_admin_user' => 'user', 'clickhouse_admin_password' => 'pass', 'clickhouse_db' => 'app'], 'clickhouse://user:pass@%s:15432/app'],
     ];
 

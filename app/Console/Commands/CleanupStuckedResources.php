@@ -22,6 +22,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\Team;
 use Illuminate\Console\Command;
 
@@ -189,6 +190,15 @@ class CleanupStuckedResources extends Command
             }
         } catch (\Throwable $e) {
             echo "Error in cleaning stuck sqlite: {$e->getMessage()}\n";
+        }
+        try {
+            $valkeys = StandaloneValkey::withTrashed()->whereNotNull('deleted_at')->lazyById();
+            foreach ($valkeys as $valkey) {
+                echo "Deleting stuck valkey: {$valkey->name}\n";
+                DeleteResourceJob::dispatch($valkey);
+            }
+        } catch (\Throwable $e) {
+            echo "Error in cleaning stuck valkey: {$e->getMessage()}\n";
         }
         try {
             $services = Service::withTrashed()->whereNotNull('deleted_at')->lazyById();

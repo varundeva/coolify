@@ -23,6 +23,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\Team;
 use App\Models\User;
 use App\Traits\HasSecretManager;
@@ -279,6 +280,7 @@ test('all deployable environment-variable resources support secret managers', fu
     StandaloneRedis::class,
     StandaloneKeydb::class,
     StandaloneDragonfly::class,
+    StandaloneValkey::class,
     StandaloneClickhouse::class,
     StandaloneSqlite::class,
 ]);

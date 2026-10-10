@@ -26,6 +26,8 @@
                         <livewire:project.database.keydb.general :database="$database" />
                     @elseif ($database->type() === 'standalone-dragonfly')
                         <livewire:project.database.dragonfly.general :database="$database" />
+                    @elseif ($database->type() === 'standalone-valkey')
+                        <livewire:project.database.valkey.general :database="$database" />
                     @elseif ($database->type() === 'standalone-clickhouse')
                         <livewire:project.database.clickhouse.general :database="$database" />
                     @elseif ($database->type() === 'standalone-sqlite')

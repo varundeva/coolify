@@ -13,6 +13,7 @@ use App\Models\StandaloneMysql;
 use App\Models\StandalonePostgresql;
 use App\Models\StandaloneRedis;
 use App\Models\StandaloneSqlite;
+use App\Models\StandaloneValkey;
 use App\Models\User;
 
 class ResourceCreatePolicy
@@ -30,6 +31,7 @@ class ResourceCreatePolicy
         StandaloneDragonfly::class,
         StandaloneClickhouse::class,
         StandaloneSqlite::class,
+        StandaloneValkey::class,
         Service::class,
         Application::class,
         GithubApp::class,

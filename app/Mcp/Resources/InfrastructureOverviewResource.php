@@ -58,6 +58,7 @@ class InfrastructureOverviewResource extends Resource
                 'mariadbs',
                 'keydbs',
                 'dragonflies',
+                'valkeys',
                 'clickhouses',
                 'sqlites',
             ])
@@ -75,6 +76,7 @@ class InfrastructureOverviewResource extends Resource
                         + $project->mariadbs_count
                         + $project->keydbs_count
                         + $project->dragonflies_count
+                        + $project->valkeys_count
                         + $project->clickhouses_count
                         + $project->sqlites_count,
                 ],
